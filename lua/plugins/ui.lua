@@ -59,6 +59,7 @@ return {
   -- ─── Indent guides ────────────────────────────────────────────────────────
   {
     "lukas-reineke/indent-blankline.nvim",
+    main = "ibl",
     opts = {
       indent = { char = "│" },
       scope = { show_start = false, show_end = false },
@@ -84,6 +85,7 @@ return {
       ██║ ╚████║ ╚████╔╝ ██║██║ ╚═╝ ██║
       ╚═╝  ╚═══╝  ╚═══╝  ╚═╝╚═╝     ╚═╝
       ]]
+      opts.config = opts.config or {}
       opts.config.header = vim.split(logo, "\n")
       return opts
     end,

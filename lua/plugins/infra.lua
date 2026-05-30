@@ -113,7 +113,7 @@ return {
   -- MASON: ensure formatters and LSPs are installed
   -- ──────────────────────────────────────────────────────────────────────────
   {
-    "williamboman/mason.nvim",
+    "mason-org/mason.nvim",
     opts = {
       ensure_installed = {
         -- LSPs
