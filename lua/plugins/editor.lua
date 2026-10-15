@@ -19,11 +19,55 @@ return {
   { "folke/flash.nvim", opts = { modes = { search = { enabled = false } } } },
 
   -- ─── File explorer tweaks ────────────────────────────────────────────────
+  -- Snacks explorer (<leader>e) aberto por padrão como sidebar, estilo VS Code.
+  {
+    "folke/snacks.nvim",
+    init = function()
+      local function explorers()
+        return Snacks.picker.get({ source = "explorer" })
+      end
+
+      -- abre ao iniciar com arquivo(s) como argumento; `nvim .` já abre via replace_netrw
+      -- e `nvim` sem argumentos fica com o dashboard
+      vim.api.nvim_create_autocmd("VimEnter", {
+        group = vim.api.nvim_create_augroup("explorer_on_start", { clear = true }),
+        once = true,
+        callback = function()
+          if #vim.api.nvim_list_uis() == 0 or vim.o.diff or vim.fn.argc() == 0 then return end
+          local ft = vim.bo.filetype
+          if ft == "gitcommit" or ft == "gitrebase" or ft == "man" or vim.bo.buftype ~= "" then return end
+          if vim.fn.isdirectory(vim.fn.argv(0)) == 1 then return end
+          vim.schedule(function()
+            -- enter = false: abre a sidebar sem tirar o foco do arquivo
+            if #explorers() == 0 then Snacks.explorer({ enter = false }) end
+          end)
+        end,
+      })
+
+      -- fechar a última janela de edição (:q, :wq) sai do nvim em vez de deixar só o explorer
+      local explorer_ft = { snacks_layout_box = true, snacks_picker_list = true, snacks_picker_input = true }
+      vim.api.nvim_create_autocmd("WinClosed", {
+        group = vim.api.nvim_create_augroup("explorer_quit", { clear = true }),
+        callback = function()
+          vim.schedule(function()
+            if #explorers() == 0 then return end
+            for _, w in ipairs(vim.api.nvim_tabpage_list_wins(0)) do
+              local is_float = vim.api.nvim_win_get_config(w).relative ~= ""
+              if not is_float and not explorer_ft[vim.bo[vim.api.nvim_win_get_buf(w)].filetype] then return end
+            end
+            if #vim.api.nvim_list_tabpages() > 1 then vim.cmd("tabclose") else vim.cmd("quitall") end
+          end)
+        end,
+      })
+    end,
+  },
   {
     "nvim-neo-tree/neo-tree.nvim",
     opts = {
       window = { width = 35 },
       filesystem = {
+        -- o Snacks explorer é quem abre diretórios (`nvim .`); Neo-tree fica só no :Neotree
+        hijack_netrw_behavior = "disabled",
         filtered_items = {
           visible = true,
           hide_dotfiles = false,

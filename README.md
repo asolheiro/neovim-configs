@@ -149,7 +149,10 @@ nvim +checkhealth
 ### Editor
 
 - **fzf-lua** — picker ativo para arquivos, buffers, grep e git (a extra do Telescope também está importada)
-- **Snacks explorer** em `<leader>e`; **Neo-tree** disponível via `:Neotree`, com dotfiles visíveis
+- **Snacks explorer** (árvore de arquivos) aberto por padrão como sidebar ao abrir arquivos ou diretórios
+  (`nvim arquivo`, `nvim .`); fecha/abre com `<leader>e` (raiz do projeto) ou `<leader>E` (cwd). Não abre com
+  `nvim` sem argumentos (dashboard), `nvim -d` nem em commits do git. `:q` na última janela de edição sai do nvim.
+- **Neo-tree** disponível via `:Neotree`, com dotfiles visíveis (não sequestra `nvim .`)
 - **Flash.nvim** — navegação por jump em qualquer ponto da tela (`s` / `S`)
 - **mini.surround** — adiciona/remove/troca delimitadores (`gsa`, `gsd`, `gsr`)
 - **Yanky** — histórico de yank (`<leader>p`)

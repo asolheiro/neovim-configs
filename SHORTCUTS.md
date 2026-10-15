@@ -88,7 +88,8 @@
 | `<leader>fg`    | Busca arquivos versionados (git files) |
 | `<leader>/` / `<leader>sg` | Live grep no projeto |
 | `<leader>fb`    | Busca nos buffers abertos    |
-| `<leader>e`     | File explorer (Snacks)       |
+| `<leader>e`     | Abre/fecha a árvore de arquivos (Snacks; abre sozinha ao iniciar) |
+| `<leader>E`     | Árvore a partir do diretório atual (cwd) |
 | `:Neotree`      | File explorer alternativo (Neo-tree, sem atalho) |
 | `Shift+l`       | Próximo buffer               |
 | `Shift+h`       | Buffer anterior              |

@@ -60,7 +60,7 @@ Each file returns a list of lazy.nvim plugin specs. Adding a new file here is au
 
 | File | Responsibility |
 |---|---|
-| `editor.lua` | which-key group labels, neo-tree, git-blame, diffview, tmux navigator |
+| `editor.lua` | which-key group labels, Snacks explorer opened by default (VimEnter with file args; `WinClosed` quits when only explorer windows remain), neo-tree (netrw hijack disabled, only `:Neotree`), git-blame, diffview, tmux navigator |
 | `lang.lua` | Language-specific plugins: go.nvim, rustaceanvim, flutter-tools, venv-selector, ts-error-translator, render-markdown, markdown-preview; markdownlint wiring (nvim-lint/conform `--config`, `<leader>mf`, `<leader>md`) |
 | `infra.lua` | Infra stack: vim-helm, helm-ls, vim-terraform, k8s.nvim, YAML schemas, conform.nvim formatters, Mason ensure_installed (deduplicated) |
 | `terminal.lua` | toggleterm (float/horizontal/vertical), lazygit terminal, Python REPL |
