@@ -222,6 +222,11 @@
 |-----------------|-----------------------------------|
 | `<leader>mp`    | Toggle render in-buffer           |
 | `<leader>mb`    | Preview no browser                |
+| `<leader>mf`    | Corrigir avisos do markdownlint   |
+| `<leader>md`    | Liga/desliga diagnostics no buffer |
+| `<leader>ud`    | Liga/desliga diagnostics (global) |
+
+> Regras do markdownlint: `markdownlint/.markdownlint.yaml` (tamanho de linha desligado).
 
 ---
 

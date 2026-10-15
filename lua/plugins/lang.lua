@@ -1,3 +1,5 @@
+local markdownlint_config = vim.fn.stdpath("config") .. "/markdownlint/.markdownlint.yaml"
+
 return {
   -- ──────────────────────────────────────────────────────────────────────────
   -- GO
@@ -121,6 +123,35 @@ return {
   -- ──────────────────────────────────────────────────────────────────────────
   -- MARKDOWN
   -- ──────────────────────────────────────────────────────────────────────────
+  -- markdownlint com a config base em markdownlint/.markdownlint.yaml
+  -- (desliga regras ruidosas, ex.: tamanho de linha). Um .markdownlint* do
+  -- projeto continua valendo por cima dela.
+  {
+    "mfussenegger/nvim-lint",
+    optional = true,
+    opts = {
+      linters = {
+        ["markdownlint-cli2"] = { prepend_args = { "--config", markdownlint_config } },
+      },
+    },
+  },
+  {
+    "stevearc/conform.nvim",
+    optional = true,
+    opts = {
+      formatters = {
+        ["markdownlint-cli2"] = { prepend_args = { "--config", markdownlint_config } },
+      },
+    },
+    keys = {
+      {
+        "<leader>mf",
+        function() require("conform").format({ formatters = { "markdownlint-cli2" } }) end,
+        ft = "markdown",
+        desc = "Fix markdownlint issues",
+      },
+    },
+  },
   {
     "MeanderingProgrammer/render-markdown.nvim",
     opts = {
@@ -131,6 +162,15 @@ return {
     ft = { "markdown", "Avante" },
     keys = {
       { "<leader>mp", "<cmd>RenderMarkdown toggle<cr>", desc = "Toggle markdown render" },
+      {
+        "<leader>md",
+        function()
+          local enabled = vim.diagnostic.is_enabled({ bufnr = 0 })
+          vim.diagnostic.enable(not enabled, { bufnr = 0 })
+          vim.notify("Diagnostics " .. (enabled and "desligados" or "ligados") .. " neste buffer")
+        end,
+        desc = "Toggle diagnostics (buffer)",
+      },
     },
   },
   {

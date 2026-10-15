@@ -1,0 +1,9 @@
+# Configuração base do markdownlint usada pelo Neovim (nvim-lint e conform).
+# Um .markdownlint* do próprio projeto continua tendo precedência sobre esta.
+default: true
+
+# Tamanho de linha: ruído em docs com parágrafos longos e tabelas.
+MD013: false
+
+# Estilo de colunas de tabela (alinhamento dos pipes): puramente cosmético.
+MD060: false
