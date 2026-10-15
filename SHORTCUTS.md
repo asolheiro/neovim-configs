@@ -1,12 +1,14 @@
 # Neovim Shortcuts — Guia de Referência
 
 > **Leader** = `<Space>`   |   Modo: N = Normal, I = Insert, V = Visual, T = Terminal
+>
+> Lista completa e sempre atualizada (gerada dos mapeamentos reais): [`CHEATSHEET.md`](./CHEATSHEET.md).
 
 ---
 
 ## Fundamentos do Vim (base para tudo)
 
-```
+```text
 ┌──────────────────────────────────────────────────────────────────────┐
 │  MOVIMENTO                                                           │
 │                                                                      │
@@ -73,7 +75,7 @@
 |----------|-------------------------|
 | `jk`     | Sai do Insert mode (N)  |
 | `kj`     | Idem                    |
-| `Ctrl+h` | Apaga palavra (Insert)  |
+| `Ctrl+w` | Apaga palavra (Insert)  |
 
 ---
 
@@ -81,18 +83,20 @@
 
 | Atalho          | Ação                         |
 |-----------------|------------------------------|
-| `<leader>ff`    | Busca arquivo (Telescope)    |
+| `<leader>ff`    | Busca arquivo (fzf-lua)      |
 | `<leader>fr`    | Arquivos recentes            |
-| `<leader>fg`    | Live grep no projeto         |
+| `<leader>fg`    | Busca arquivos versionados (git files) |
+| `<leader>/` / `<leader>sg` | Live grep no projeto |
 | `<leader>fb`    | Busca nos buffers abertos    |
-| `<leader>e`     | Abre file explorer (Neo-tree)|
+| `<leader>e`     | File explorer (Snacks)       |
+| `:Neotree`      | File explorer alternativo (Neo-tree, sem atalho) |
 | `Shift+l`       | Próximo buffer               |
 | `Shift+h`       | Buffer anterior              |
 | `<leader>bd`    | Fecha buffer atual           |
 | `<leader>bD`    | Fecha todos os outros        |
-| `<leader>w`     | Salva arquivo                |
-| `<leader>q`     | Fecha janela                 |
-| `<leader>Q`     | Fecha tudo (força)           |
+| `Ctrl+s`        | Salva arquivo                |
+| `<leader>qq`    | Sai do Neovim (fecha tudo)   |
+| `<leader>qs` / `<leader>ql` | Restaura sessão (diretório / última) |
 
 ---
 
@@ -116,16 +120,19 @@
 | `gd`            | Vai à definição                   |
 | `gD`            | Vai à declaração                  |
 | `gr`            | Referências                       |
-| `gi`            | Vai à implementação               |
-| `gK`            | Hover (documentação)              |
+| `gI`            | Vai à implementação               |
+| `K`             | Hover (documentação)              |
+| `gK`            | Signature help                    |
 | `<leader>cr`    | Renomeia símbolo                  |
 | `<leader>ca`    | Code actions                      |
-| `<leader>lf`    | Formata arquivo                   |
-| `<leader>ld`    | Diagnóstico da linha              |
-| `<leader>lD`    | Lista todos os diagnósticos       |
+| `<leader>cf`    | Formata arquivo                   |
+| `<leader>cd`    | Diagnóstico da linha              |
+| `<leader>xx`    | Lista todos os diagnósticos (Trouble) |
 | `[d` / `]d`     | Diagnóstico anterior / próximo    |
-| `<leader>cs`    | Symbols (documento)               |
-| `<leader>cS`    | Symbols (workspace)               |
+| `<leader>ss`    | Símbolos do documento             |
+| `<leader>sS`    | Símbolos do workspace             |
+| `<leader>cs`    | Símbolos (painel Trouble)         |
+| `<leader>uf`    | Liga/desliga formatação ao salvar |
 
 ---
 
@@ -137,12 +144,15 @@
 | `<leader>gd`    | DiffView (diff completo)          |
 | `<leader>gh`    | Histórico do arquivo              |
 | `<leader>gb`    | Toggle git blame inline           |
-| `<leader>gs`    | Git status (Telescope)            |
-| `<leader>gc`    | Git commits (Telescope)           |
+| `<leader>gs`    | Git status (fzf-lua)              |
+| `<leader>gc`    | Git commits (fzf-lua)             |
 | `]h` / `[h`     | Próxima / anterior hunk           |
-| `<leader>gp`    | Preview da hunk                   |
-| `<leader>gr`    | Reset hunk                        |
-| `<leader>gS`    | Stage hunk                        |
+| `<leader>ghp`   | Preview da hunk                   |
+| `<leader>ghr`   | Reset hunk                        |
+| `<leader>ghs`   | Stage hunk                        |
+
+> `<leader>gh` sozinho abre o histórico do arquivo (diffview) e também é o prefixo dos atalhos de hunk:
+> ao digitar `<leader>gh` o Neovim espera o `timeoutlen` antes de abrir o histórico.
 
 ---
 
@@ -167,8 +177,8 @@
 | `<leader>dB`    | Breakpoint condicional            |
 | `<leader>dc`    | Continuar                         |
 | `<leader>di`    | Step into                         |
-| `<leader>do`    | Step over                         |
-| `<leader>dO`    | Step out                          |
+| `<leader>dO`    | Step over                         |
+| `<leader>do`    | Step out                          |
 | `<leader>dr`    | REPL do debugger                  |
 | `<leader>du`    | Toggle DAP UI                     |
 
@@ -245,7 +255,7 @@
 | Atalho          | Ação                              |
 |-----------------|-----------------------------------|
 | `<leader>co`    | Abre quickfix                     |
-| `<leader>cc`    | Fecha quickfix                    |
+| `<leader>cc`    | Fecha quickfix (em buffers com LSP vira "Run Codelens") |
 | `]q` / `[q`     | Próximo / anterior item           |
 
 ---
@@ -276,7 +286,7 @@
 
 ## Dicas Cross-Platform
 
-```
+```text
 macOS:   Cmd+C/V funcionam no terminal (clipboard via pbcopy)
 Linux:   xclip ou xsel precisa estar instalado (apt install xclip)
          O clipboard "unnamedplus" usa o X11 clipboard (+)
