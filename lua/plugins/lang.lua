@@ -100,7 +100,6 @@ return {
   {
     "linux-cultist/venv-selector.nvim",
     dependencies = { "neovim/nvim-lspconfig", "nvim-telescope/telescope.nvim" },
-    branch = "regexp",
     ft = "python",
     opts = { settings = { search = { my_venvs = { command = "fd python3 ~/.venv --full-path" } } } },
     keys = {

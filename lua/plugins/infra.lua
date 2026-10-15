@@ -114,8 +114,13 @@ return {
   -- ──────────────────────────────────────────────────────────────────────────
   {
     "mason-org/mason.nvim",
-    opts = {
-      ensure_installed = {
+    -- As extras do LazyVim já adicionam várias ferramentas (goimports, gofumpt,
+    -- delve, stylua, shfmt, codelldb...). O LazyVim não deduplica a lista e
+    -- instalar o mesmo pacote duas vezes quebra com "Package is already installing",
+    -- por isso a lista final é deduplicada aqui.
+    opts = function(_, opts)
+      opts.ensure_installed = opts.ensure_installed or {}
+      vim.list_extend(opts.ensure_installed, {
         -- LSPs
         "gopls", "pyright", "ruff", "rust-analyzer",
         "typescript-language-server", "dart-debug-adapter",
@@ -123,11 +128,16 @@ return {
         "docker-compose-language-service", "helm-ls",
         "lua-language-server", "marksman", "taplo",
         -- Formatters
-        "goimports", "gofumpt", "prettier", "stylua",
-        "shfmt", "ruff",
+        "goimports", "gofumpt", "prettier", "stylua", "shfmt",
         -- DAP
         "delve", "debugpy", "codelldb",
-      },
-    },
+      })
+      local seen = {}
+      opts.ensure_installed = vim.tbl_filter(function(tool)
+        if seen[tool] then return false end
+        seen[tool] = true
+        return true
+      end, opts.ensure_installed)
+    end,
   },
 }
