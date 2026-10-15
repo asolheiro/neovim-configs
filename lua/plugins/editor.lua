@@ -5,7 +5,8 @@ return {
     opts = {
       spec = {
         { "<leader>v", group = "vim config" },
-        { "<leader>s", group = "split/window" },
+        { "<leader>s", group = "search/split" },
+        { "<leader>t", group = "terminal" },
         { "<leader>d", group = "debug" },
         { "<leader>r", group = "run / REPL" },
         { "<leader>k", group = "kubernetes" },
@@ -64,10 +65,10 @@ return {
     "christoomey/vim-tmux-navigator",
     cmd = { "TmuxNavigateLeft", "TmuxNavigateDown", "TmuxNavigateUp", "TmuxNavigateRight" },
     keys = {
-      { "<C-h>", "<cmd>TmuxNavigateLeft<cr>" },
-      { "<C-j>", "<cmd>TmuxNavigateDown<cr>" },
-      { "<C-k>", "<cmd>TmuxNavigateUp<cr>" },
-      { "<C-l>", "<cmd>TmuxNavigateRight<cr>" },
+      { "<C-h>", "<cmd>TmuxNavigateLeft<cr>",  desc = "Go to left window / tmux pane" },
+      { "<C-j>", "<cmd>TmuxNavigateDown<cr>",  desc = "Go to lower window / tmux pane" },
+      { "<C-k>", "<cmd>TmuxNavigateUp<cr>",    desc = "Go to upper window / tmux pane" },
+      { "<C-l>", "<cmd>TmuxNavigateRight<cr>", desc = "Go to right window / tmux pane" },
     },
   },
 

@@ -2,27 +2,27 @@
 local map = vim.keymap.set
 
 -- ─── Escape shortcuts ─────────────────────────────────────────────────────────
-map("i", "jk", "<ESC>", { silent = true })
-map("i", "kj", "<ESC>", { silent = true })
+map("i", "jk", "<ESC>", { silent = true, desc = "Exit insert mode" })
+map("i", "kj", "<ESC>", { silent = true, desc = "Exit insert mode" })
 
 -- ─── Stay centered when scrolling / searching ─────────────────────────────────
-map("n", "<C-d>", "<C-d>zz")
-map("n", "<C-u>", "<C-u>zz")
-map("n", "n",     "nzzzv")
-map("n", "N",     "Nzzzv")
+map("n", "<C-d>", "<C-d>zz", { desc = "Half page down (centered)" })
+map("n", "<C-u>", "<C-u>zz", { desc = "Half page up (centered)" })
+map("n", "n",     "nzzzv", { desc = "Next search result (centered)" })
+map("n", "N",     "Nzzzv", { desc = "Prev search result (centered)" })
 
 -- ─── Better paste (don't overwrite register) ──────────────────────────────────
-map("x", "p", '"_dP')
+map("x", "p", '"_dP', { desc = "Paste without overwriting register" })
 
 -- ─── Move lines up/down ───────────────────────────────────────────────────────
-map("v", "<A-j>", ":m '>+1<CR>gv=gv", { silent = true })
-map("v", "<A-k>", ":m '<-2<CR>gv=gv", { silent = true })
-map("n", "<A-j>", ":m .+1<CR>==",     { silent = true })
-map("n", "<A-k>", ":m .-2<CR>==",     { silent = true })
+map("v", "<A-j>", ":m '>+1<CR>gv=gv", { silent = true, desc = "Move selection down" })
+map("v", "<A-k>", ":m '<-2<CR>gv=gv", { silent = true, desc = "Move selection up" })
+map("n", "<A-j>", ":m .+1<CR>==",     { silent = true, desc = "Move line down" })
+map("n", "<A-k>", ":m .-2<CR>==",     { silent = true, desc = "Move line up" })
 
 -- ─── Indent keep selection ────────────────────────────────────────────────────
-map("v", "<", "<gv")
-map("v", ">", ">gv")
+map("v", "<", "<gv", { desc = "Indent left (keep selection)" })
+map("v", ">", ">gv", { desc = "Indent right (keep selection)" })
 
 -- ─── Window management ────────────────────────────────────────────────────────
 map("n", "<leader>sv", "<C-w>v",  { desc = "Split vertical" })
