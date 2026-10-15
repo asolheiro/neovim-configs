@@ -21,6 +21,12 @@ require("lazy").setup({
     -- LazyVim core + its defaults
     { "LazyVim/LazyVim", import = "lazyvim.plugins", opts = { colorscheme = "tokyonight-night" } },
 
+    -- ── DAP (Debugger) ───────────────────────────────────────────────────────
+    -- Precisa vir antes das extras de linguagem: elas ajustam as opts do DAP
+    -- (ex.: typescript exclui o adapter "chrome" da instalação automática) e
+    -- seriam sobrescritas se dap.core fosse importado depois.
+    { import = "lazyvim.plugins.extras.dap.core" },
+
     -- ── Language Extras ─────────────────────────────────────────────────────
     { import = "lazyvim.plugins.extras.lang.go" },
     { import = "lazyvim.plugins.extras.lang.python" },
@@ -40,9 +46,6 @@ require("lazy").setup({
 
     -- ── UI Extras ────────────────────────────────────────────────────────────
     { import = "lazyvim.plugins.extras.ui.treesitter-context" },
-
-    -- ── DAP (Debugger) ───────────────────────────────────────────────────────
-    { import = "lazyvim.plugins.extras.dap.core" },
 
     -- ── Your custom plugins ──────────────────────────────────────────────────
     { import = "plugins" },
