@@ -2,7 +2,7 @@
 
 <!-- Gerado por scripts/gerar-cheatsheet.sh a partir dos mapeamentos reais. Não edite à mão. -->
 
-> Gerado em 2026-10-15 · Leader = `<Space>` · Descrições como registradas pelos plugins/config.
+> Gerado em 2026-11-09 · Leader = `<Space>` · Descrições como registradas pelos plugins/config.
 > Versão comentada e com dicas: [`SHORTCUTS.md`](./SHORTCUTS.md). PDF: `scripts/cheatsheet-pdf.sh`.
 
 ## Índice
@@ -155,6 +155,8 @@
 | `<leader>gD` | Normal | Diff view close |
 | `<leader>gd` | Normal | Diff view open |
 | `<leader>gf` | Normal | Git Current File History |
+| `<leader>gG` | Normal | Lazygit (cwd) |
+| `<leader>gg` | Normal | Lazygit (Root Dir) |
 | `<leader>gh` | Normal | File history |
 | `<leader>ghB` | Normal | Blame Buffer |
 | `<leader>ghb` | Normal | Blame Line |
@@ -234,10 +236,10 @@
 | `<leader>sT` | Normal | Todo/Fix/Fixme |
 | `<leader>st` | Normal | Todo |
 | `<leader>sv` | Normal | Split vertical |
-| `<leader>sW` | Normal | Word (cwd) |
 | `<leader>sW` | Visual | Selection (cwd) |
-| `<leader>sw` | Normal | Word (Root Dir) |
+| `<leader>sW` | Normal | Word (cwd) |
 | `<leader>sw` | Visual | Selection (Root Dir) |
+| `<leader>sw` | Normal | Word (Root Dir) |
 | `<leader>sx` | Normal | Close split |
 
 ### `<leader>t` — terminal
@@ -428,12 +430,12 @@
 | `<C-W><C-D>` | Normal | Show diagnostics under the cursor |
 | `<C-W><Space>` | Normal | Window Hydra Mode (which-key) |
 | `<C-W>d` | Normal | Show diagnostics under the cursor |
-| `<M-j>` | Normal | Move line down |
 | `<M-j>` | Insert | Move Down |
+| `<M-j>` | Normal | Move line down |
 | `<M-j>` | Visual | Move selection down |
-| `<M-k>` | Insert | Move Up |
 | `<M-k>` | Normal | Move line up |
 | `<M-k>` | Visual | Move selection up |
+| `<M-k>` | Insert | Move Up |
 | `<M-n>` | Normal | Next Reference |
 | `<M-p>` | Normal | Prev Reference |
 | `<S-Tab>` | Insert | vim.snippet.jump if active, otherwise \<S-Tab> |
