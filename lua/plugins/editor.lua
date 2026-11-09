@@ -126,4 +126,15 @@ return {
       { "<leader>gh", "<cmd>DiffviewFileHistory %<cr>",  desc = "File history" },
     },
   },
+
+  -- The editor.fzf extra also maps <leader>gd (FzfLua git_diff). Its mapping is
+  -- set when fzf-lua loads, so <leader>gd silently switched from Diffview to
+  -- fzf after the first picker use. Keep it on Diffview.
+  {
+    "ibhagwan/fzf-lua",
+    optional = true,
+    keys = {
+      { "<leader>gd", false },
+    },
+  },
 }
