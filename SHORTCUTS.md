@@ -236,6 +236,12 @@
 | `<leader>mf`    | Corrigir avisos do markdownlint   |
 | `<leader>md`    | Liga/desliga diagnostics no buffer |
 | `<leader>ud`    | Liga/desliga diagnostics (global) |
+| `]#` / `[#`     | Próximo / anterior heading (treesitter) |
+| `<leader>mo`    | Outline de headings (Telescope + treesitter) |
+| `<leader>mv`    | Toggle preview split (read-only, live-sync)  |
+| `<C-space>`     | Expandir seleção por nó treesitter (heading → seção → doc) |
+| `<BS>`          | Encolher seleção (com seleção ativa) |
+| `za` / `zR` / `zM` | Fold/unfold por seção (fold via treesitter) |
 
 > Regras do markdownlint: `markdownlint/.markdownlint.yaml` (tamanho de linha desligado).
 
