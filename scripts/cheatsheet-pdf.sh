@@ -5,8 +5,8 @@
 #   --gerar   regenera o CHEATSHEET.md antes (scripts/gerar-cheatsheet.sh)
 #   padrões:  CHEATSHEET.md → CHEATSHEET.pdf na raiz do repo
 #
-# Requer: node/npm e google-chrome, chromium ou chromium-browser no PATH
-#         (ou CHROME=/caminho/do/binario).
+# Requer: node/npm e google-chrome, chromium ou chromium-browser no PATH, o Chrome/Chromium
+#         instalado em /Applications (macOS), ou CHROME=/caminho/do/binario.
 set -euo pipefail
 
 repo="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
@@ -17,13 +17,23 @@ if [[ "${1:-}" == "--gerar" ]]; then
   "$repo/scripts/gerar-cheatsheet.sh"
 fi
 
-in="$(realpath "${1:-$repo/CHEATSHEET.md}")"
-out="$(realpath -m "${2:-${in%.md}.pdf}")"
+# caminhos absolutos sem `realpath -m` (só existe no GNU coreutils, não no macOS)
+abs() { [[ "$1" == /* ]] && printf '%s\n' "$1" || printf '%s\n' "$PWD/$1"; }
+in="$(abs "${1:-$repo/CHEATSHEET.md}")"
+[[ -f "$in" ]] || { echo "erro: $in não existe" >&2; exit 1; }
+out="$(abs "${2:-${in%.md}.pdf}")"
 
 chrome="${CHROME:-}"
 if [[ -z "$chrome" ]]; then
   for c in google-chrome google-chrome-stable chromium chromium-browser; do
     if command -v "$c" >/dev/null 2>&1; then chrome="$c"; break; fi
+  done
+fi
+# no macOS o Chrome não fica no PATH, só dentro do .app
+if [[ -z "$chrome" ]]; then
+  for c in "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome" \
+           "/Applications/Chromium.app/Contents/MacOS/Chromium"; do
+    if [[ -x "$c" ]]; then chrome="$c"; break; fi
   done
 fi
 [[ -n "$chrome" ]] || { echo "erro: Chrome/Chromium não encontrado (defina CHROME=...)" >&2; exit 1; }
